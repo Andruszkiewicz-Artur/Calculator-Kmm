@@ -1,19 +1,13 @@
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "Calculator_Kmm"
+
 pluginManagement {
     repositories {
         google()
+        mavenCentral()
         gradlePluginPortal()
-        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "Calculator_Kmm"
 include(":androidApp")
 include(":shared")
