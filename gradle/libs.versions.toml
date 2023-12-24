@@ -109,4 +109,4 @@ compose = ["compose-material3", "material-icons-extended", "compose-runtime", "c
 ktor = ["ktor-serialization-kotlinx-json", "ktor-client-cio", "ktor-client-content-negotiation", "ktor-client-json", "ktor-client-serialization", "ktor-logging"]
 sqldelight = ["sqldelight-coroutines-extensions", "sqldelight-runtime"]
 moko = ["moko-resources", "moko-resources-compose"]
-preCompose = ["preCompose-koin", "preCompose-molecule", "preCompose-viewmodel"]
+preCompose = ["preCompose-koin", "preCompose-viewmodel"]

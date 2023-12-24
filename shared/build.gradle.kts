@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.compose)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -37,11 +38,19 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
 
+            implementation(libs.kotlinx.datetime)
+
+            api(libs.napier)
+
             api(libs.preCompose)
             api(libs.bundles.preCompose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        iosMain.dependencies {
+
         }
     }
 }
