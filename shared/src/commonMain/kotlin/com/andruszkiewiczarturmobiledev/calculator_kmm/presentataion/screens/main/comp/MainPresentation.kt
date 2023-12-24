@@ -20,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,11 +28,14 @@ import androidx.compose.ui.unit.dp
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.MainEvent
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.MainViewModel
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.units.ColorType
+import moe.tlaster.precompose.viewmodel.viewModel
 
 @Composable
 fun MainPresentation() {
-    val viewModel = MainViewModel()
-    val state by rememberUpdatedState(newValue = viewModel.state.collectAsState().value)
+    val viewModel = remember {
+        MainViewModel()
+    }
+    val state = viewModel.state.collectAsState().value
 
     Surface(
         modifier = Modifier
