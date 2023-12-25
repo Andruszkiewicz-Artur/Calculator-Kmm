@@ -63,7 +63,7 @@ class MainViewModel: ViewModel() {
                     currentValue = newCurrentValue,
                     values = newListOfValues,
                     isClearClickable = isClearClickable,
-                    isPlusMinusClickable = false,
+                    isPlusMinusClickable = isClearClickable,
                     isEqualClickable = false,
                     isZeroClickable = false,
                     isCharClickable = false,
@@ -71,24 +71,29 @@ class MainViewModel: ViewModel() {
                 ) }
             }
             MainEvent.SetUpPlusMinus -> {
-                if (_state.value.values.size < 2) {
+                val values = _state.value.values
+
+                if (values.size == 0) {
                     _state.update { it.copy(
-                        currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "") else "-" + it.currentValue
+                        currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "")
+                        else "-${it.currentValue}"
                     ) }
                 } else {
-                    if (_state.value.values.last() == "+" || _state.value.values.last() == "-") {
-                        val newList = _state.value.values
+                    val lastChar = values.last()
+                    if (lastChar == "+" || lastChar == "-") {
 
-                        newList.removeLast()
-                        if (_state.value.values.last() == "+") newList.add("-")
-                        else newList.add("+")
+                        values.removeLast()
+
+                        if (lastChar == "-") values.add("+")
+                        else values.add("-")
 
                         _state.update { it.copy(
-                            values = newList
+                            values = values
                         ) }
                     } else {
                         _state.update { it.copy(
-                            currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "") else "-" + it.currentValue
+                            currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "")
+                            else "-${it.currentValue}"
                         ) }
                     }
                 }

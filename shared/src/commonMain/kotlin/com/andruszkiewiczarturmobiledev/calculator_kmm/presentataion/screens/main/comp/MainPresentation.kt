@@ -48,6 +48,11 @@ fun MainPresentation() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+
+            Text(
+                text = state.values.toString()
+            )
+
             Row(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
