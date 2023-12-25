@@ -7,4 +7,5 @@ sealed class MainEvent {
     data object SetUpPlusMinus: MainEvent()
     data object RemoveLast: MainEvent()
     data object SetUpResult: MainEvent()
+    data object ClickPercent: MainEvent()
 }

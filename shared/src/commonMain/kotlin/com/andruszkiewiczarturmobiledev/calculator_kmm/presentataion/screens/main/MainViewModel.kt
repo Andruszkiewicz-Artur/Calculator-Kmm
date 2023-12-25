@@ -101,6 +101,14 @@ class MainViewModel: ViewModel() {
             MainEvent.SetUpResult -> {
 
             }
+            MainEvent.ClickPercent -> {
+                val currentNumber = _state.value.currentValue.toDoubleOrNull()
+                if (currentNumber != null) {
+                    _state.update { it.copy(
+                        currentValue = "${currentNumber / 100}"
+                    ) }
+                }
+            }
         }
 
         setUpPresentedValue()

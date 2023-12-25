@@ -48,11 +48,6 @@ fun MainPresentation() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
-
-            Text(
-                text = state.values.toString()
-            )
-
             Row(
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier
@@ -93,7 +88,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Percent,
                         color = ColorType.LightGray,
-                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("%")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
                         isClickable = state.isCharClickable,
                         modifier = Modifier.weight(1f)
                     )
