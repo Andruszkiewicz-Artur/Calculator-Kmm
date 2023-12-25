@@ -3,4 +3,8 @@ package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.ma
 sealed class MainEvent {
     data class AddNumber(val value: String): MainEvent()
     data class AddOption(val value: String): MainEvent()
+    data object AddDote: MainEvent()
+    data object SetUpPlusMinus: MainEvent()
+    data object RemoveLast: MainEvent()
+    data object SetUpResult: MainEvent()
 }

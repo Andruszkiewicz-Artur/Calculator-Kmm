@@ -24,56 +24,60 @@ class MainViewModel: ViewModel() {
                 ) }
             }
             is MainEvent.AddOption -> {
-                if (event.value == "delete") {
+                addNextValue(event.value)
+            }
+            MainEvent.AddDote -> {
+                _state.update { it.copy(
+                    currentValue = it.currentValue + ".",
+                    isClearClickable = true,
+                    isPlusMinusClickable = true,
+                    isEqualClickable = false,
+                    isZeroClickable = true,
+                    isCharClickable = false,
+                    isDoteClickable = true
+                ) }
+            }
+            MainEvent.RemoveLast -> {
+                _state.update { it.copy(
+                    currentValue = "0",
+                    values = mutableListOf(),
+                    isClearClickable = false,
+                    isPlusMinusClickable = false,
+                    isEqualClickable = false,
+                    isZeroClickable = false,
+                    isCharClickable = false,
+                    isDoteClickable = false
+                ) }
+            }
+            MainEvent.SetUpPlusMinus -> {
+                if (_state.value.values.size < 2) {
                     _state.update { it.copy(
-                        currentValue = "0",
-                        values = mutableListOf(),
-                        isClearClickable = false,
-                        isPlusMinusClickable = false,
-                        isEqualClickable = false,
-                        isZeroClickable = false,
-                        isCharClickable = false,
-                        isDoteClickable = false
+                        currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "") else "-" + it.currentValue
                     ) }
-                } else if (event.value == ".") {
-                    _state.update { it.copy(
-                        currentValue = it.currentValue + ".",
-                        isClearClickable = true,
-                        isPlusMinusClickable = true,
-                        isEqualClickable = false,
-                        isZeroClickable = true,
-                        isCharClickable = false,
-                        isDoteClickable = true
-                    ) }
-                } else if (event.value == "+/-") {
-                    if (_state.value.values.size < 2) {
+                } else {
+                    if (_state.value.values.last() == "+" || _state.value.values.last() == "-") {
+                        val newList = _state.value.values
+
+                        newList.removeLast()
+                        if (_state.value.values.last() == "+") newList.add("-")
+                        else newList.add("+")
+
+                        _state.update { it.copy(
+                            values = newList
+                        ) }
+                    } else {
                         _state.update { it.copy(
                             currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "") else "-" + it.currentValue
                         ) }
-                    } else {
-                        if (_state.value.values.last() == "+" || _state.value.values.last() == "-") {
-                            val newList = _state.value.values
-
-                            newList.removeLast()
-                            if (_state.value.values.last() == "+") newList.add("-")
-                            else newList.add("+")
-
-                            _state.update { it.copy(
-                                values = newList
-                            ) }
-                        } else {
-                            _state.update { it.copy(
-                                currentValue = if(it.currentValue.first() == '-') it.currentValue.replace("-", "") else "-" + it.currentValue
-                            ) }
-                        }
                     }
-                } else if (event.value == "%") {
-
-                } else {
-                    addNextValue(event.value)
                 }
             }
+            MainEvent.SetUpResult -> {
+
+            }
         }
+
+        setUpPresentedValue()
     }
 
     private fun addNextValue(char: String) {
@@ -95,6 +99,24 @@ class MainViewModel: ViewModel() {
             isEqualClickable = newList.size > 2,
             isZeroClickable = false,
             isCharClickable = true
+        ) }
+    }
+
+    private fun setUpPresentedValue() {
+        var newPresentedValue = ""
+
+        if (_state.value.values.size > 0) {
+            _state.value.values.forEach {
+                newPresentedValue = "$newPresentedValue$it "
+            }
+
+            if (_state.value.currentValue != "0") newPresentedValue += _state.value.currentValue
+        } else {
+            newPresentedValue = _state.value.currentValue
+        }
+
+        _state.update { it.copy(
+            presentedValue = newPresentedValue
         ) }
     }
 }

@@ -10,6 +10,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Backspace
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Exposure
@@ -54,7 +55,7 @@ fun MainPresentation() {
                     .padding(8.dp)
             ) {
                 Text(
-                    text = state.currentValue,
+                    text = state.presentedValue,
                     style = MaterialTheme.typography.displayMedium
                 )
             }
@@ -69,9 +70,9 @@ fun MainPresentation() {
                         .fillMaxWidth()
                 ) {
                     CalculatorButton(
-                        icon = Icons.Filled.Delete,
+                        icon = Icons.Filled.Backspace,
                         color = ColorType.LightGray,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("delete")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
                         isClickable = state.isClearClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -79,7 +80,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Exposure,
                         color = ColorType.LightGray,
-                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("+/-")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
                         isClickable = state.isPlusMinusClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -87,7 +88,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Percent,
                         color = ColorType.LightGray,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("%")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("%")) },
                         isClickable = state.isCharClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -116,7 +117,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         text = "8",
                         color = ColorType.Gray,
-                        onClickChar = { viewModel.onEvent(MainEvent.AddNumber("8")) },
+                        onClick = { viewModel.onEvent(MainEvent.AddNumber("8")) },
                         modifier = Modifier.weight(1f)
                     )
 
@@ -130,7 +131,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Close,
                         color = ColorType.Primary,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("x")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("x")) },
                         isClickable = state.isCharClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -165,7 +166,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Remove,
                         color = ColorType.Primary,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("-")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("-")) },
                         isClickable = state.isCharClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -200,7 +201,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         icon = Icons.Filled.Add,
                         color = ColorType.Primary,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("+")) },
+                        onClickChar = { viewModel.onEvent(MainEvent.AddOption("+")) },
                         isClickable = state.isCharClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -223,7 +224,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         text = ".",
                         color = ColorType.LightGray,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption(".")) },
+                        onClick = { viewModel.onEvent(MainEvent.AddDote) },
                         isClickable = state.isDoteClickable,
                         modifier = Modifier.weight(1f)
                     )
@@ -231,7 +232,7 @@ fun MainPresentation() {
                     CalculatorButton(
                         text = "=",
                         color = ColorType.Primary,
-                        onClick = { viewModel.onEvent(MainEvent.AddOption("=")) },
+                        onClick = { viewModel.onEvent(MainEvent.SetUpResult) },
                         isClickable = state.isEqualClickable,
                         modifier = Modifier.weight(1f)
                     )
