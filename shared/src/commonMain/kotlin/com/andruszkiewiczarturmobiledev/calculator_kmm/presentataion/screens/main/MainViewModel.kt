@@ -27,21 +27,42 @@ class MainViewModel: ViewModel() {
                 addNextValue(event.value)
             }
             MainEvent.AddDote -> {
-                _state.update { it.copy(
-                    currentValue = it.currentValue + ".",
-                    isClearClickable = true,
-                    isPlusMinusClickable = true,
-                    isEqualClickable = false,
-                    isZeroClickable = true,
-                    isCharClickable = false,
-                    isDoteClickable = true
-                ) }
+                if (!_state.value.currentValue.contains(".")) {
+                    _state.update { it.copy(
+                        currentValue = it.currentValue + ".",
+                        isClearClickable = true,
+                        isPlusMinusClickable = true,
+                        isEqualClickable = false,
+                        isZeroClickable = true,
+                        isCharClickable = true,
+                        isDoteClickable = false
+                    ) }
+                }
             }
             MainEvent.RemoveLast -> {
+                var newCurrentValue = "0"
+                val newListOfValues = _state.value.values
+                var isClearClickable = true
+
+                if (_state.value.currentValue == "0") {
+                    newListOfValues.removeLast()
+                    newCurrentValue = newListOfValues.lastOrNull() ?: "0"
+                    if (newListOfValues.lastOrNull() != null) newListOfValues.removeLast()
+                } else {
+                    val currentValueFromState = _state.value.currentValue.dropLast(1)
+
+                    if (currentValueFromState.isBlank()) {
+                        newCurrentValue = "0"
+                        if (newListOfValues.size == 0) isClearClickable = false
+                    } else {
+                        newCurrentValue = currentValueFromState
+                    }
+                }
+
                 _state.update { it.copy(
-                    currentValue = "0",
-                    values = mutableListOf(),
-                    isClearClickable = false,
+                    currentValue = newCurrentValue,
+                    values = newListOfValues,
+                    isClearClickable = isClearClickable,
                     isPlusMinusClickable = false,
                     isEqualClickable = false,
                     isZeroClickable = false,
