@@ -27,7 +27,6 @@ fun CalculatorButton(
     color: ColorType = ColorType.Primary,
     onClick: (String) -> Unit = {  },
     onClickChar: (ImageVector) -> Unit = {  },
-    isClickable: Boolean = true,
     aspectRatio: Float = 1f,
     modifier: Modifier = Modifier
 ) {
@@ -45,10 +44,9 @@ fun CalculatorButton(
     val fontSize = MaterialTheme.typography.headlineLarge.fontSize
 
     Button(
-        onClick = { if (isClickable) {
+        onClick = {
             if (text != null) onClick(text)
-            else if (icon != null) onClickChar(icon)
-        } },
+            else if (icon != null) onClickChar(icon) },
         colors = ButtonDefaults.buttonColors(
             containerColor = themeColor,
             contentColor = contentColor
