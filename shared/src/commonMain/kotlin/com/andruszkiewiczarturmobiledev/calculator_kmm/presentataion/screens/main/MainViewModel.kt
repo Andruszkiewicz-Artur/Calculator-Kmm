@@ -90,7 +90,55 @@ class MainViewModel: ViewModel() {
                 }
             }
             MainEvent.SetUpResult -> {
+                if (_state.value.values.size > 2 || (_state.value.currentValue != "0" && _state.value.values.size == 2)) {
+                    val listOfNumbers = mutableListOf<Double>()
+                    val listOfChars = mutableListOf<String>()
+                    var listOfQueue = mutableListOf<Int>()
 
+                    _state.value.values.forEach {
+                        val figure = it.toDoubleOrNull()
+                        if (figure != null) listOfNumbers.add(figure)
+                        else listOfChars.add(it)
+                    }
+
+                    if (_state.value.currentValue != "0") {
+                        listOfNumbers.add(_state.value.currentValue.toDouble() )
+                    } else if (_state.value.currentValue == "0") {
+                        listOfChars.removeLast()
+                    }
+
+                    listOfChars.forEachIndexed { index, char ->
+                        if (char == "/" || char == "x") listOfQueue.add(index)
+                    }
+
+                    listOfChars.forEachIndexed { index, char ->
+                        if (char == "+" || char == "-") listOfQueue.add(index)
+                    }
+
+                    for (value in 0..<listOfQueue.size) {
+                        val index = listOfQueue.first()
+
+                        listOfNumbers[index] = count(
+                            char = listOfChars[index],
+                            number1 = listOfNumbers[index],
+                            number2 = listOfNumbers[index + 1]
+                        )
+
+                        listOfQueue.removeFirst()
+                        listOfNumbers.removeAt(index + 1)
+                        listOfChars.removeAt(index)
+
+                        listOfQueue = listOfQueue.map {
+                            if (it > index) it - 1
+                            else it
+                        }.toMutableList()
+                    }
+
+                    _state.update { it.copy(
+                        values = mutableListOf(),
+                        currentValue = listOfNumbers.first().toString()
+                    ) }
+                }
             }
             MainEvent.ClickPercent -> {
                 if(_state.value.currentValue != "0") {
@@ -140,5 +188,15 @@ class MainViewModel: ViewModel() {
         _state.update { it.copy(
             presentedValue = newPresentedValue
         ) }
+    }
+
+    private fun count(char: String, number1: Double, number2: Double): Double {
+        return when (char) {
+            "x" -> number1 * number2
+            "/" -> number1 / number2
+            "-" -> number1 - number2
+            "+" -> number1 + number2
+            else -> 0.0
+        }
     }
 }
