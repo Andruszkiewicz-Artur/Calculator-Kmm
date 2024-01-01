@@ -1,11 +1,14 @@
-package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main
+package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import moe.tlaster.precompose.viewmodel.ViewModel
+import org.koin.core.component.KoinComponent
 
-class MainViewModel: ViewModel() {
+class MainViewModel(
+
+): KoinComponent {
 
     private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState())
     val state = _state.asStateFlow()
@@ -39,7 +42,7 @@ class MainViewModel: ViewModel() {
             }
             MainEvent.RemoveLast -> {
                 if (_state.value.currentValue != "0" || _state.value.values.size != 0) {
-                    var newCurrentValue = "0"
+                    var newCurrentValue: String
                     val newListOfValues = _state.value.values
 
                     if (_state.value.currentValue == "0") {

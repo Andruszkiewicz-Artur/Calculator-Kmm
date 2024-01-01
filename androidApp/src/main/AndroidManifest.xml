@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:supportsRtl="true"
-        android:label="Calculator"
+        android:name=".CalculatorApp"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

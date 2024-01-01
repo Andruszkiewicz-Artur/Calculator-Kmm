@@ -1,4 +1,4 @@
-package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.comp
+package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.comp
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.aspectRatio
@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.units.ColorType
+import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.units.ColorType
 
 @Composable
 fun CalculatorButton(

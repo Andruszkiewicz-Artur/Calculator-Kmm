@@ -1,4 +1,4 @@
-package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.comp
+package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.comp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,15 +21,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.MainEvent
-import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main.MainViewModel
-import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.units.ColorType
+import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.MainEvent
+import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.MainViewModel
+import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.units.ColorType
+import org.koin.compose.koinInject
 
 @Composable
-fun MainPresentation() {
-    val viewModel = remember {
-        MainViewModel()
-    }
+fun MainPresentation(
+    viewModel: MainViewModel = koinInject()
+) {
     val state = viewModel.state.collectAsState().value
 
     Surface(

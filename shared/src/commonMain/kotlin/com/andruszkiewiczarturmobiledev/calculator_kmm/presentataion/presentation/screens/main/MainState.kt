@@ -1,4 +1,4 @@
-package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.screens.main
+package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main
 
 data class MainState(
     val presentedValue: String = "0",

@@ -44,6 +44,9 @@ kotlin {
 
             api(libs.preCompose)
             api(libs.bundles.preCompose)
+
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -51,6 +54,11 @@ kotlin {
 
         iosMain.dependencies {
 
+        }
+
+        androidMain.dependencies {
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
     }
 }
