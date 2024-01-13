@@ -26,6 +26,7 @@ import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentatio
 fun CalculatorButton(
     text: String? = null,
     icon: ImageVector? = null,
+    textView: @Composable () -> Unit = {  },
     color: ColorType = ColorType.Primary,
     onClick: (String) -> Unit = {  },
     onClickChar: (ImageVector) -> Unit = {  },
@@ -69,6 +70,8 @@ fun CalculatorButton(
                     modifier = Modifier
                         .size(fontSize.value.dp)
                 )
+            } else {
+                textView()
             }
         }
     )

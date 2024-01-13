@@ -10,6 +10,7 @@ import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentatio
 fun LandscapeCalculatorButton(
     text: String? = null,
     icon: ImageVector? = null,
+    textView: @Composable () -> Unit = { },
     color: ColorType = ColorType.Primary,
     onClick: (String) -> Unit = {  },
     onClickChar: (ImageVector) -> Unit = {  },
@@ -19,6 +20,7 @@ fun LandscapeCalculatorButton(
     CalculatorButton(
         text = text,
         icon = icon,
+        textView = textView,
         color = color,
         onClick = onClick,
         onClickChar = onClickChar,

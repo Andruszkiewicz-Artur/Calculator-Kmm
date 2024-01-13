@@ -1,7 +1,11 @@
 package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.comp
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Backspace
@@ -9,8 +13,12 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Exposure
 import androidx.compose.material.icons.filled.Percent
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.MainEvent
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main.MainViewModel
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.units.ColorType
@@ -25,29 +33,27 @@ fun LandscapeView(
             .fillMaxWidth()
     ) {
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Percent,
+            text = "mc",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
-            modifier = Modifier.weight(1f)
-        )
-
-        LandscapeCalculatorButton(
-            text = "/",
-            color = ColorType.Primary,
-            onClick = { viewModel.onEvent(MainEvent.AddOption("/")) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Backspace,
+            text = "m+",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClick = {  },
+            modifier = Modifier.weight(1f,)
+        )
+        LandscapeCalculatorButton(
+            text = "m-",
+            color = ColorType.LightGray,
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Exposure,
+            text = "mr",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -85,29 +91,27 @@ fun LandscapeView(
             .fillMaxWidth()
     ) {
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Percent,
+            text = "(",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
-            modifier = Modifier.weight(1f)
-        )
-
-        LandscapeCalculatorButton(
-            text = "/",
-            color = ColorType.Primary,
-            onClick = { viewModel.onEvent(MainEvent.AddOption("/")) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Backspace,
+            text = ")",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClick = {  },
+            modifier = Modifier.weight(1f,)
+        )
+        LandscapeCalculatorButton(
+            text = "√",
+            color = ColorType.LightGray,
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Exposure,
+            text = "ln",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -145,29 +149,44 @@ fun LandscapeView(
             .fillMaxWidth()
     ) {
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Percent,
+            text = "x/y",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            text = "/",
-            color = ColorType.Primary,
-            onClick = { viewModel.onEvent(MainEvent.AddOption("/")) },
+            textView = {
+                Row {
+                    Text(
+                        text = "x",
+                        fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                    )
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                    ) {
+                        Text(
+                            text = "y",
+                            fontSize = MaterialTheme.typography.bodyMedium.fontSize / 2
+                        )
+                    }
+                }
+            },
+            color = ColorType.LightGray,
+            onClick = {  },
             modifier = Modifier.weight(1f,)
         )
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Backspace,
+            text = "e",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Exposure,
+            text = "pi",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -205,29 +224,27 @@ fun LandscapeView(
             .fillMaxWidth()
     ) {
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Percent,
+            text = "sin",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            text = "/",
-            color = ColorType.Primary,
-            onClick = { viewModel.onEvent(MainEvent.AddOption("/")) },
+            text = "cos",
+            color = ColorType.LightGray,
+            onClick = {  },
             modifier = Modifier.weight(1f,)
         )
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Backspace,
+            text = "tan",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Exposure,
+            text = "cot",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -265,29 +282,27 @@ fun LandscapeView(
             .fillMaxWidth()
     ) {
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Percent,
+            text = "sinh",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            text = "/",
-            color = ColorType.Primary,
-            onClick = { viewModel.onEvent(MainEvent.AddOption("/")) },
+            text = "cosh",
+            color = ColorType.LightGray,
+            onClick = {  },
             modifier = Modifier.weight(1f,)
         )
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Backspace,
+            text = "tanh",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
-
         LandscapeCalculatorButton(
-            icon = Icons.Filled.Exposure,
+            text = "coth",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClickChar = {  },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
