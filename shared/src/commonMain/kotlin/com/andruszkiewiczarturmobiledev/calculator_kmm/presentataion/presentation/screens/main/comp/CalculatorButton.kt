@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.units.ColorType
@@ -28,7 +30,8 @@ fun CalculatorButton(
     onClick: (String) -> Unit = {  },
     onClickChar: (ImageVector) -> Unit = {  },
     aspectRatio: Float = 1f,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontSize: TextUnit = MaterialTheme.typography.headlineLarge.fontSize
 ) {
     val contentColor = when(color) {
         ColorType.LightGray -> MaterialTheme.colorScheme.onBackground.copy(alpha = 0.9f)
@@ -40,8 +43,6 @@ fun CalculatorButton(
         ColorType.Gray -> Color.Gray
         ColorType.Primary -> MaterialTheme.colorScheme.primary
     }
-
-    val fontSize = MaterialTheme.typography.headlineLarge.fontSize
 
     Button(
         onClick = {

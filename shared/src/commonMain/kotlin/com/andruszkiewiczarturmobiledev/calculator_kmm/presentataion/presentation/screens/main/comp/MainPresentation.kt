@@ -63,7 +63,9 @@ fun MainPresentation(
                         viewModel = viewModel
                     )
                 } else {
-
+                    LandscapeView(
+                        viewModel = viewModel
+                    )
                 }
             }
         }
