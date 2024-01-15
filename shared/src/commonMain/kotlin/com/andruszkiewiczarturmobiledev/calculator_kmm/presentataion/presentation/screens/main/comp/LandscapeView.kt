@@ -180,13 +180,13 @@ fun LandscapeView(
         LandscapeCalculatorButton(
             text = "e",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("e")) },
+            onClick = { viewModel.onEvent(MainEvent.MakeE) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
             text = "pi",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("pi")) },
+            onClick = { viewModel.onEvent(MainEvent.MakePi) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -226,25 +226,25 @@ fun LandscapeView(
         LandscapeCalculatorButton(
             text = "sin",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("sin")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("sin")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
             text = "cos",
             color = ColorType.LightGray,
-            onClick = { viewModel.onEvent(MainEvent.AddNumber("cos")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("cos")) },
             modifier = Modifier.weight(1f,)
         )
         LandscapeCalculatorButton(
             text = "tan",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("tan")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("tan")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
             text = "cot",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("cot")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("cot")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
@@ -284,25 +284,25 @@ fun LandscapeView(
         LandscapeCalculatorButton(
             text = "sinh",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("sinh")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("sinh")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
             text = "cosh",
             color = ColorType.LightGray,
-            onClick = { viewModel.onEvent(MainEvent.AddNumber("cosh")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("cosh")) },
             modifier = Modifier.weight(1f,)
         )
         LandscapeCalculatorButton(
             text = "tanh",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("tanh")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("tanh")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(
             text = "coth",
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.AddNumber("coth")) },
+            onClick = { viewModel.onEvent(MainEvent.CountAngle("coth")) },
             modifier = Modifier.weight(1f)
         )
         LandscapeCalculatorButton(

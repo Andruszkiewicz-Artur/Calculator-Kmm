@@ -1,11 +1,10 @@
 package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main
 
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import moe.tlaster.precompose.viewmodel.ViewModel
 import org.koin.core.component.KoinComponent
+import kotlin.math.PI
 
 class MainViewModel(
 
@@ -143,6 +142,21 @@ class MainViewModel(
                     currentValue = it.memoryValue
                 ) }
             }
+            is MainEvent.CountAngle -> {
+                _state.update { it.copy(
+                    currentValue = countAngle(event.value).toString()
+                ) }
+            }
+            MainEvent.MakePi -> {
+                _state.update { it.copy(
+                    currentValue = PI.toString()
+                ) }
+            }
+            MainEvent.MakeE -> {
+                _state.update { it.copy(
+                    currentValue = kotlin.math.E.toString()
+                ) }
+            }
         }
 
         setUpPresentedValue()
@@ -238,5 +252,22 @@ class MainViewModel(
         }
 
         return listOfNumbers
+    }
+
+    private fun countAngle(type: String): Double {
+        val newValue = _state.value.currentValue.toDouble()
+
+
+        return when (type) {
+            "sin" -> kotlin.math.sin(newValue)
+            "cos" -> kotlin.math.cos(newValue)
+            "tan" -> kotlin.math.tan(newValue)
+            "cot" -> 1/kotlin.math.tan(newValue)
+            "sinh" -> kotlin.math.sinh(newValue)
+            "cosh" -> kotlin.math.cosh(newValue)
+            "tanh" -> kotlin.math.tanh(newValue)
+            "coth" -> 1/kotlin.math.tanh(newValue)
+            else -> 0.0
+        }
     }
 }

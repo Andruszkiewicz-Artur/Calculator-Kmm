@@ -3,6 +3,7 @@ package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentati
 sealed class MainEvent {
     data class AddNumber(val value: String): MainEvent()
     data class AddOption(val value: String): MainEvent()
+    data class CountAngle(val value: String): MainEvent()
     data object AddDote: MainEvent()
     data object SetUpPlusMinus: MainEvent()
     data object RemoveLast: MainEvent()
@@ -12,4 +13,6 @@ sealed class MainEvent {
     data object AddFromMemoryResult: MainEvent()
     data object SubtractFromMemoryResult: MainEvent()
     data object ShowFromMemoryResult: MainEvent()
+    data object MakePi: MainEvent()
+    data object MakeE: MainEvent()
 }
