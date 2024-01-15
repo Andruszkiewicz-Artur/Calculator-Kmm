@@ -8,4 +8,8 @@ sealed class MainEvent {
     data object RemoveLast: MainEvent()
     data object SetUpResult: MainEvent()
     data object ClickPercent: MainEvent()
+    data object ClearMemoryResult: MainEvent()
+    data object AddFromMemoryResult: MainEvent()
+    data object SubtractFromMemoryResult: MainEvent()
+    data object ShowFromMemoryResult: MainEvent()
 }

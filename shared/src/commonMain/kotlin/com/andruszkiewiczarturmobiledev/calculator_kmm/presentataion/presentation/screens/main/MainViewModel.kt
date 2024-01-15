@@ -1,5 +1,6 @@
 package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentation.screens.main
 
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -13,7 +14,9 @@ class MainViewModel(
     private val _state: MutableStateFlow<MainState> = MutableStateFlow(MainState())
     val state = _state.asStateFlow()
 
-
+    private companion object {
+        const val TAG = "MainViewModel_TAG"
+    }
 
     fun onEvent(event: MainEvent) {
         when (event) {
@@ -94,48 +97,7 @@ class MainViewModel(
             }
             MainEvent.SetUpResult -> {
                 if (_state.value.values.size > 2 || (_state.value.currentValue != "0" && _state.value.values.size == 2)) {
-                    val listOfNumbers = mutableListOf<Double>()
-                    val listOfChars = mutableListOf<String>()
-                    var listOfQueue = mutableListOf<Int>()
-
-                    _state.value.values.forEach {
-                        val figure = it.toDoubleOrNull()
-                        if (figure != null) listOfNumbers.add(figure)
-                        else listOfChars.add(it)
-                    }
-
-                    if (_state.value.currentValue != "0") {
-                        listOfNumbers.add(_state.value.currentValue.toDouble() )
-                    } else if (_state.value.currentValue == "0") {
-                        listOfChars.removeLast()
-                    }
-
-                    listOfChars.forEachIndexed { index, char ->
-                        if (char == "/" || char == "x") listOfQueue.add(index)
-                    }
-
-                    listOfChars.forEachIndexed { index, char ->
-                        if (char == "+" || char == "-") listOfQueue.add(index)
-                    }
-
-                    for (value in 0..<listOfQueue.size) {
-                        val index = listOfQueue.first()
-
-                        listOfNumbers[index] = count(
-                            char = listOfChars[index],
-                            number1 = listOfNumbers[index],
-                            number2 = listOfNumbers[index + 1]
-                        )
-
-                        listOfQueue.removeFirst()
-                        listOfNumbers.removeAt(index + 1)
-                        listOfChars.removeAt(index)
-
-                        listOfQueue = listOfQueue.map {
-                            if (it > index) it - 1
-                            else it
-                        }.toMutableList()
-                    }
+                    val listOfNumbers = resultOfExample()
 
                     _state.update { it.copy(
                         values = mutableListOf(),
@@ -152,6 +114,34 @@ class MainViewModel(
                         ) }
                     }
                 }
+            }
+            MainEvent.ClearMemoryResult-> {
+                _state.update { it.copy(
+                    memoryValue = "0"
+                ) }
+            }
+            MainEvent.AddFromMemoryResult -> {
+                _state.update { it.copy(
+                    memoryValue = count(
+                        char = "+",
+                        number1 = _state.value.memoryValue.toDouble(),
+                        number2 = _state.value.currentValue.toDouble()
+                    ).toString()
+                ) }
+            }
+            MainEvent.SubtractFromMemoryResult -> {
+                _state.update { it.copy(
+                    memoryValue = count(
+                        char = "-",
+                        number1 = _state.value.memoryValue.toDouble(),
+                        number2 = _state.value.currentValue.toDouble()
+                    ).toString()
+                ) }
+            }
+            MainEvent.ShowFromMemoryResult -> {
+                _state.update { it.copy(
+                    currentValue = it.memoryValue
+                ) }
             }
         }
 
@@ -201,5 +191,52 @@ class MainViewModel(
             "+" -> number1 + number2
             else -> 0.0
         }
+    }
+
+    private fun resultOfExample(): List<Double> {
+        val listOfNumbers = mutableListOf<Double>()
+        val listOfChars = mutableListOf<String>()
+        var listOfQueue = mutableListOf<Int>()
+
+        _state.value.values.forEach {
+            val figure = it.toDoubleOrNull()
+            if (figure != null) listOfNumbers.add(figure)
+            else listOfChars.add(it)
+        }
+
+        if (_state.value.currentValue != "0") {
+            listOfNumbers.add(_state.value.currentValue.toDouble() )
+        } else if (_state.value.currentValue == "0") {
+            listOfChars.removeLast()
+        }
+
+        listOfChars.forEachIndexed { index, char ->
+            if (char == "/" || char == "x") listOfQueue.add(index)
+        }
+
+        listOfChars.forEachIndexed { index, char ->
+            if (char == "+" || char == "-") listOfQueue.add(index)
+        }
+
+        for (value in 0..<listOfQueue.size) {
+            val index = listOfQueue.first()
+
+            listOfNumbers[index] = count(
+                char = listOfChars[index],
+                number1 = listOfNumbers[index],
+                number2 = listOfNumbers[index + 1]
+            )
+
+            listOfQueue.removeFirst()
+            listOfNumbers.removeAt(index + 1)
+            listOfChars.removeAt(index)
+
+            listOfQueue = listOfQueue.map {
+                if (it > index) it - 1
+                else it
+            }.toMutableList()
+        }
+
+        return listOfNumbers
     }
 }

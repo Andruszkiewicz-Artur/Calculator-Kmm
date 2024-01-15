@@ -3,5 +3,6 @@ package com.andruszkiewiczarturmobiledev.calculator_kmm.presentataion.presentati
 data class MainState(
     val presentedValue: String = "0",
     val currentValue: String = "0",
+    val memoryValue: String = "0",
     val values: MutableList<String> = mutableListOf()
 )
