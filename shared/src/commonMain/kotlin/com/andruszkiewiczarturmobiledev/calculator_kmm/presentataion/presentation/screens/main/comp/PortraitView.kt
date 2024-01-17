@@ -35,21 +35,21 @@ fun PortraitView(
         CalculatorButton(
             icon = Icons.Filled.Backspace,
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.RemoveLast) },
+            onClick = { viewModel.onEvent(MainEvent.RemoveLast) },
             modifier = Modifier.weight(1f)
         )
 
         CalculatorButton(
             icon = Icons.Filled.Exposure,
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
+            onClick = { viewModel.onEvent(MainEvent.SetUpPlusMinus) },
             modifier = Modifier.weight(1f)
         )
 
         CalculatorButton(
             icon = Icons.Filled.Percent,
             color = ColorType.LightGray,
-            onClickChar = { viewModel.onEvent(MainEvent.ClickPercent) },
+            onClick = { viewModel.onEvent(MainEvent.ClickPercent) },
             modifier = Modifier.weight(1f)
         )
 
@@ -90,7 +90,7 @@ fun PortraitView(
         CalculatorButton(
             icon = Icons.Filled.Close,
             color = ColorType.Primary,
-            onClickChar = { viewModel.onEvent(MainEvent.AddOption("x")) },
+            onClick = { viewModel.onEvent(MainEvent.AddOption("x")) },
             modifier = Modifier.weight(1f)
         )
     }
@@ -124,7 +124,7 @@ fun PortraitView(
         CalculatorButton(
             icon = Icons.Filled.Remove,
             color = ColorType.Primary,
-            onClickChar = { viewModel.onEvent(MainEvent.AddOption("-")) },
+            onClick = { viewModel.onEvent(MainEvent.AddOption("-")) },
             modifier = Modifier.weight(1f)
         )
     }
@@ -158,7 +158,7 @@ fun PortraitView(
         CalculatorButton(
             icon = Icons.Filled.Add,
             color = ColorType.Primary,
-            onClickChar = { viewModel.onEvent(MainEvent.AddOption("+")) },
+            onClick = { viewModel.onEvent(MainEvent.AddOption("+")) },
             modifier = Modifier.weight(1f)
         )
     }

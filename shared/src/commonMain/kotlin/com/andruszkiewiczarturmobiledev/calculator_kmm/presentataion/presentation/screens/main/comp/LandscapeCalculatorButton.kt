@@ -12,8 +12,7 @@ fun LandscapeCalculatorButton(
     icon: ImageVector? = null,
     textView: @Composable () -> Unit = { },
     color: ColorType = ColorType.Primary,
-    onClick: (String) -> Unit = {  },
-    onClickChar: (ImageVector) -> Unit = {  },
+    onClick: () -> Unit = {  },
     aspectRatio: Float = 2f,
     modifier: Modifier = Modifier
 ) {
@@ -23,7 +22,6 @@ fun LandscapeCalculatorButton(
         textView = textView,
         color = color,
         onClick = onClick,
-        onClickChar = onClickChar,
         aspectRatio = aspectRatio,
         modifier = modifier,
         fontSize = MaterialTheme.typography.bodyMedium.fontSize

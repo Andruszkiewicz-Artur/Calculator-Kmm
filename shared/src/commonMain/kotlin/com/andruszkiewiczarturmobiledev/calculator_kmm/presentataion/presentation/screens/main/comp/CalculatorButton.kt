@@ -28,8 +28,7 @@ fun CalculatorButton(
     icon: ImageVector? = null,
     textView: @Composable () -> Unit = {  },
     color: ColorType = ColorType.Primary,
-    onClick: (String) -> Unit = {  },
-    onClickChar: (ImageVector) -> Unit = {  },
+    onClick: () -> Unit = {  },
     aspectRatio: Float = 1f,
     modifier: Modifier = Modifier,
     fontSize: TextUnit = MaterialTheme.typography.headlineLarge.fontSize
@@ -46,9 +45,7 @@ fun CalculatorButton(
     }
 
     Button(
-        onClick = {
-            if (text != null) onClick(text)
-            else if (icon != null) onClickChar(icon) },
+        onClick = { onClick() },
         colors = ButtonDefaults.buttonColors(
             containerColor = themeColor,
             contentColor = contentColor

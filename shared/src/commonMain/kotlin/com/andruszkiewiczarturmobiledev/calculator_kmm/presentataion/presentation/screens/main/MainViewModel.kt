@@ -157,6 +157,35 @@ class MainViewModel(
                     currentValue = kotlin.math.E.toString()
                 ) }
             }
+            MainEvent.MakeLn -> {
+                _state.update { it.copy(
+                    currentValue = kotlin.math.ln(it.currentValue.toDouble()).toString()
+                ) }
+            }
+            is MainEvent.AddSpecial -> {
+                when (event.value) {
+                    "root" -> {
+                        _state.update { it.copy(
+                            currentValue = "√" + it.currentValue
+                        ) }
+                    }
+                    "power" -> {
+                        _state.update { it.copy(
+                            currentValue = it.currentValue + "^"
+                        ) }
+                    }
+                    "log" -> {
+                        _state.update { it.copy(
+                            currentValue = "log(" + it.currentValue
+                        ) }
+                    }
+                }
+            }
+            is MainEvent.AddBracket -> {
+                _state.update { it.copy(
+                    currentValue = it.currentValue + event.value
+                ) }
+            }
         }
 
         setUpPresentedValue()
